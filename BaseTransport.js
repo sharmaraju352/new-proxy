@@ -7,6 +7,10 @@ class BaseTransport {
     async start() {
       throw new Error('start() not implemented');
     }
+
+    async connect() {
+      throw new Error('connect() not implemented');
+    }
   
     async send(message) {
       throw new Error('send() not implemented');
