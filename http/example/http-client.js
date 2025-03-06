@@ -6,9 +6,7 @@ async function run() {
     clientOptions: { url: 'http://localhost:3002' } 
   });
   const client = new ProxyClient(transport);
-  console.log('proxy client created')
   const handler = await client.connect();
-  console.log('handler created')
 
   // 1. Call a simple remote method.
   const greeting = await handler.hello("HTTP world");
