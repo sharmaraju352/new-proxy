@@ -2,7 +2,22 @@ const WebSocketTransport = require('../WebSocketTransport');
 const ProxyServer = require('../../ProxyServer');
 const EventEmitter = require('events');
 
+class MathHandler {
+  async add(a, b) {
+    return a + b;
+  }
+  
+  async multiply(a, b) {
+    return a * b;
+  }
+}
+
 class Handler extends EventEmitter {
+  constructor() {
+    super();
+    this.math = new MathHandler();
+  }
+
   async hello(name) {
     return `Hello ${name}`;
   }
@@ -11,10 +26,13 @@ class Handler extends EventEmitter {
     this.emit('onceEvent', data);
     return "onceEvent emitted";
   }
+  
+  async chainExample(value) {
+    return value;
+  }
 }
 
 const handler = new Handler();
-
 const transport = new WebSocketTransport({ 
   serverOptions: { port: 3001 } 
 });
